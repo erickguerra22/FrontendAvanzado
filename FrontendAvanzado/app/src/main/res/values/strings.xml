@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">FrontendAvanzado</string>
+    <string name="app_name">Laboratorio 8</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="species_subtitle">Species:</string>
+    <string name="status_subtitle">Status:</string>
+    <string name="gender_subtitle">Gender:</string>
+    <string name="test_species_info">Human</string>
+    <string name="test_status_info">Alive</string>
+    <string name="test_gender_info">Male</string>
+    <string name="test_name">Morty Smith</string>
+    <string name="test_name_item">Rick Sanchez</string>
+    <string name="test_info_item">Human - Alive</string>
 </resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_itemCharacter"
+    android:layout_width="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_height="@dimen/two_line_image_item_height">
+
+    <ImageView
+        android:id="@+id/img_characterItem"
+        android:layout_width="@dimen/default_image_size"
+        android:layout_height="@dimen/default_image_size"
+        tools:srcCompat="@tools:sample/avatars"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="@dimen/default_margin"
+        />
+    
+    <TextView
+        android:id="@+id/txt_characterItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="@string/test_name_item"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@id/img_characterItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/txt_characterItemInfo"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/txt_characterItemInfo"
+        android:layout_width="0dp"
+        tools:text="@string/test_info_item"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/img_characterItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_characterItemName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
