@@ -11,4 +11,8 @@
     <string name="test_name">Morty Smith</string>
     <string name="test_name_item">Rick Sanchez</string>
     <string name="test_info_item">Human - Alive</string>
+    <string name="test_origin_info">Earth</string>
+    <string name="origin_subtitle">Origin:</string>
+    <string name="test_appearances_info">51</string>
+    <string name="appearances_subtitle">Episode appearances:</string>
 </resources>

@@ -22,6 +22,8 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
     private lateinit var species: TextView
     private lateinit var status: TextView
     private lateinit var gender: TextView
+    private lateinit var origin: TextView
+    private lateinit var appearances: TextView
 
     val args: CharacterDetailFragmentArgs by navArgs()
 
@@ -33,6 +35,8 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
         species = view.findViewById(R.id.txt_speciesInfo)
         status = view.findViewById(R.id.txt_statusInfo)
         gender = view.findViewById(R.id.txt_genderInfo)
+        origin = view.findViewById(R.id.txt_originInfo)
+        appearances = view.findViewById(R.id.txt_appearancesInfo)
         val characterId = args.characterId
 
         RetrofitInstance.api.getCharacter(characterId).enqueue(object : Callback<CharacterDto>{
@@ -51,6 +55,8 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
                     species.text = response.body()!!.species
                     status.text = response.body()!!.status
                     gender.text = response.body()!!.gender
+                    origin.text = response.body()!!.origin.name
+                    appearances.text = response.body()!!.episode.size.toString()
                 }
             }
 
