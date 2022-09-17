@@ -10,6 +10,11 @@ import coil.load
 import coil.request.CachePolicy
 import coil.transform.CircleCropTransformation
 import com.erick.frontendavanzado.R
+import com.erick.frontendavanzado.datasource.api.RetrofitInstance
+import com.erick.frontendavanzado.datasource.model.CharacterDto
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
     private lateinit var profilePicture: ImageView
@@ -28,19 +33,31 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
         species = view.findViewById(R.id.txt_speciesInfo)
         status = view.findViewById(R.id.txt_statusInfo)
         gender = view.findViewById(R.id.txt_genderInfo)
+        val characterId = args.characterId
 
-        profilePicture.load(args.image){
-            crossfade(true)
-            crossfade(500)
-            placeholder(R.drawable.ic_loading)
-            error(R.drawable.ic_error)
-            memoryCachePolicy(CachePolicy.ENABLED)
-            diskCachePolicy(CachePolicy.ENABLED)
-            transformations(CircleCropTransformation())
-        }
-        name.text = args.name
-        species.text = args.species
-        status.text = args.status
-        gender.text = args.gender
+        RetrofitInstance.api.getCharacter(characterId).enqueue(object : Callback<CharacterDto>{
+            override fun onResponse(call: Call<CharacterDto>, response: Response<CharacterDto>) {
+                if(response.isSuccessful && response.body() != null){
+                    profilePicture.load(response.body()!!.image){
+                        crossfade(true)
+                        crossfade(500)
+                        placeholder(R.drawable.ic_loading)
+                        error(R.drawable.ic_error)
+                        memoryCachePolicy(CachePolicy.ENABLED)
+                        diskCachePolicy(CachePolicy.ENABLED)
+                        transformations(CircleCropTransformation())
+                    }
+                    name.text = response.body()!!.name
+                    species.text = response.body()!!.species
+                    status.text = response.body()!!.status
+                    gender.text = response.body()!!.gender
+                }
+            }
+
+            override fun onFailure(call: Call<CharacterDto>, t: Throwable) {
+                println("Error")
+            }
+
+        })
     }
 }

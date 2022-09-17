@@ -17,22 +17,10 @@
     <fragment
         android:id="@+id/characterDetailFragment"
         android:name="com.erick.frontendavanzado.fragments.CharacterDetailFragment"
-        android:label="Character Detail"
+        android:label="Character Details"
         tools:layout="@layout/fragment_character_detail" >
         <argument
-            android:name="image"
-            app:argType="string" />
-        <argument
-            android:name="name"
-            app:argType="string" />
-        <argument
-            android:name="species"
-            app:argType="string" />
-        <argument
-            android:name="status"
-            app:argType="string" />
-        <argument
-            android:name="gender"
-            app:argType="string" />
+            android:name="characterId"
+            app:argType="integer" />
     </fragment>
 </navigation>

@@ -10,13 +10,18 @@ import com.erick.frontendavanzado.R
 import com.erick.frontendavanzado.activities.MainActivity
 import com.erick.frontendavanzado.adapters.CharacterAdapter
 import com.erick.frontendavanzado.database.Database
-import com.erick.frontendavanzado.entities.Character
+import com.erick.frontendavanzado.datasource.api.RetrofitInstance
+import com.erick.frontendavanzado.datasource.model.AllCharactersResponse
+import com.erick.frontendavanzado.datasource.model.CharacterDto
 import com.google.android.material.appbar.MaterialToolbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdapter.RecyclerCharacterClickHandler {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var characterList: MutableList<Character>
+    private lateinit var characterList: MutableList<CharacterDto>
     private lateinit var toolBar: MaterialToolbar
     private lateinit var adapter: CharacterAdapter
 
@@ -25,7 +30,24 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
 
         toolBar = (activity as MainActivity).getToolBar()
         recyclerView = view.findViewById(R.id.recyclerView_charactersFragment)
-        setupRecycler()
+
+        RetrofitInstance.api.getCharacters().enqueue(object : Callback<AllCharactersResponse>{
+            override fun onResponse(
+                call: Call<AllCharactersResponse>,
+                response: Response<AllCharactersResponse>
+            ) {
+                if(response.isSuccessful && response.body() != null){
+                    characterList = response.body()!!.results
+                    setupRecycler()
+                }
+            }
+
+            override fun onFailure(call: Call<AllCharactersResponse>, t: Throwable) {
+                println("Error")
+            }
+
+        })
+
         setListeners()
     }
 
@@ -49,17 +71,15 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
     }
 
     private fun setupRecycler() {
-        characterList = Database.getCharacters()
         adapter = CharacterAdapter(characterList, this)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
     }
 
-    override fun onCharacterClicked(character: Character) {
+    override fun onCharacterClicked(character: CharacterDto) {
         val action = CharactersFragmentDirections.actionCharactersFragmentToCharacterDetailFragment(
-            character.image, character.name, character.species, character.status, character.gender)
+            character.id)
         requireView().findNavController().navigate(action)
     }
-
 }

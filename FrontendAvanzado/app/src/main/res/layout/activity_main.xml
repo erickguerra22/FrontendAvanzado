@@ -10,6 +10,7 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar_mainActivity"
         android:backgroundTint="@color/toolbar_color"
+        app:titleTextColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:menu="@menu/tool_bar_menu"
