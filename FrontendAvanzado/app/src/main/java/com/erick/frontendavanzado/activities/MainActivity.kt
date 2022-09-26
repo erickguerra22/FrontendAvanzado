@@ -1,8 +1,13 @@
 package com.erick.frontendavanzado.activities
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.core.view.get
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -25,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         navController = navHostFragment.navController
 
-        val appbarConfig = AppBarConfiguration(navController.graph)
+        val appbarConfig = AppBarConfiguration(setOf(R.id.loginFragment, R.id.charactersFragment))
         toolBar = findViewById(R.id.toolbar_mainActivity)
         toolBar.setupWithNavController(navController, appbarConfig)
 
@@ -35,12 +40,17 @@ class MainActivity : AppCompatActivity() {
     private fun listenToNavGraphChanges() {
         navController.addOnDestinationChangedListener(NavController.OnDestinationChangedListener{controller, destination, arguments ->
             when (destination.id){
+                R.id.loginFragment -> {
+                    toolBar.visibility = View.GONE
+                }
                 R.id.characterDetailFragment -> {
                     toolBar.menu.clear()
+                    toolBar.visibility = View.VISIBLE
                 }
                 else ->{
                     toolBar.menu.clear()
                     toolBar.inflateMenu(R.menu.tool_bar_menu)
+                    toolBar.visibility = View.VISIBLE
                 }
             }
         })

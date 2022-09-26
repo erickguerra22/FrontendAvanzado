@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Laboratorio 9</string>
+    <string name="app_name">Laboratorio 10</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="species_subtitle">Species:</string>
@@ -15,4 +15,8 @@
     <string name="origin_subtitle">Origin:</string>
     <string name="test_appearances_info">51</string>
     <string name="appearances_subtitle">Episode appearances:</string>
+    <string name="inputLayout_email_hint">Correo</string>
+    <string name="valid_mail">gue21781@uvg.edu.gt</string>
+    <string name="login_btn">Iniciar Sesión</string>
+    <string name="inputLayout_password_hint">Contraseña</string>
 </resources>

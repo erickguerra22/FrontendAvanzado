@@ -11,4 +11,9 @@
         android:title="Ordenar Z - A"
         app:showAsAction="never"
         />
+    <item
+        android:id="@+id/menu_item_logOut"
+        android:title="Cerrar sesión"
+        app:showAsAction="never"
+        />
 </menu>

@@ -9,4 +9,5 @@
     <dimen name="horizontal_margin_details">77dp</dimen>
     <dimen name="title_size">17sp</dimen>
     <dimen name="profile_picture_size">300dp</dimen>
+    <dimen name="extra_large_margin">50dp</dimen>
 </resources>
