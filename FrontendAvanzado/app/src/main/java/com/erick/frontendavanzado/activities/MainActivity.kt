@@ -38,35 +38,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun listenToNavGraphChanges() {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
+        navController.addOnDestinationChangedListener(NavController.OnDestinationChangedListener{controller, destination, arguments ->
+            when (destination.id){
                 R.id.loginFragment -> {
                     toolBar.visibility = View.GONE
                 }
-                R.id.charactersFragment -> {
-                    toolBar.visibility = View.VISIBLE
-                    supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                    supportActionBar?.setDisplayShowHomeEnabled(true)
-                    //toolbar.navigationIcon = null
-                    toolBar.title = "Characters"
-                    toolBar.menu.findItem(R.id.menu_item_sortAZ).isVisible = true
-                    toolBar.menu.findItem(R.id.menu_item_sortZA).isVisible = true
-                    toolBar.menu.findItem(R.id.menu_item_logOut).isVisible = true
-                    toolBar.menu.findItem(R.id.menu_item_update).isVisible = true
-                    toolBar.menu.findItem(R.id.menu_item_delete).isVisible = false
-                }
-
                 R.id.characterDetailFragment -> {
+                    toolBar.menu.clear()
+                    toolBar.inflateMenu(R.menu.character_detail_tool_bar_menu)
                     toolBar.visibility = View.VISIBLE
-                    toolBar.title = "Character Detail"
-                    toolBar.menu.findItem(R.id.menu_item_sortAZ).isVisible = false
-                    toolBar.menu.findItem(R.id.menu_item_sortZA).isVisible = false
-                    toolBar.menu.findItem(R.id.menu_item_logOut).isVisible = false
-                    toolBar.menu.findItem(R.id.menu_item_update).isVisible = true
-                    toolBar.menu.findItem(R.id.menu_item_delete).isVisible = true
+                }
+                else ->{
+                    toolBar.menu.clear()
+                    toolBar.inflateMenu(R.menu.characters_tool_bar_menu)
+                    toolBar.visibility = View.VISIBLE
                 }
             }
-        }
+        })
     }
 
     public fun getToolBar(): MaterialToolbar{

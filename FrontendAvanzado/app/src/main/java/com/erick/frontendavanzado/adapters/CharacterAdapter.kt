@@ -11,7 +11,6 @@ import coil.load
 import coil.request.CachePolicy
 import coil.transform.CircleCropTransformation
 import com.erick.frontendavanzado.R
-import com.erick.frontendavanzado.data.api_source.model.CharacterDto
 import com.erick.frontendavanzado.domain.model.Character
 
 class CharacterAdapter(

@@ -44,27 +44,7 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
             "dbCharacters"
         ).build()
 
-        if(getCharacters() > 0)
-            setupRecycler()
-        else{
-            RetrofitInstance.api.getCharacters().enqueue(object : Callback<AllCharactersResponse>{
-                override fun onResponse(
-                    call: Call<AllCharactersResponse>,
-                    response: Response<AllCharactersResponse>
-                ) {
-                    if(response.isSuccessful && response.body() != null){
-                        characterList = toCharacter(response.body()!!.results)
-                        saveCharacters(characterList)
-                        setupRecycler()
-                    }
-                }
-
-                override fun onFailure(call: Call<AllCharactersResponse>, t: Throwable) {
-                    println("Error")
-                }
-
-            })
-        }
+        getCharacters()
         setListeners()
     }
 
@@ -76,13 +56,40 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
         }
     }
 
-    private fun getCharacters(): Int {
+    private fun getCharacters() {
         CoroutineScope(Dispatchers.IO).launch {
             val characters = database.characterDao().getAllCharacters()
-            characterList.clear()
-            characterList.addAll(characters)
+            if(characters.isEmpty())
+                getDataFromAPI()
+            else{
+                characterList.clear()
+                characterList.addAll(characters)
+                CoroutineScope(Dispatchers.Main).launch {
+                    setupRecycler()
+                }
+            }
         }
-        return characterList.size
+    }
+
+    private fun getDataFromAPI() {
+        characterList.clear()
+        RetrofitInstance.api.getCharacters().enqueue(object : Callback<AllCharactersResponse>{
+            override fun onResponse(
+                call: Call<AllCharactersResponse>,
+                response: Response<AllCharactersResponse>
+            ) {
+                if(response.isSuccessful && response.body() != null){
+                    characterList = toCharacter(response.body()!!.results)
+                    saveCharacters(characterList)
+                    setupRecycler()
+                }
+            }
+
+            override fun onFailure(call: Call<AllCharactersResponse>, t: Throwable) {
+                println("Error")
+            }
+
+        })
     }
 
     private fun toCharacter(results: MutableList<CharacterDto>): MutableList<Character> {
@@ -135,19 +142,21 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
     }
 
     private fun syncData() {
-        characterList.clear()
-        CoroutineScope(Dispatchers.IO).launch {
-            database.characterDao().deleteAll()
-        }
         RetrofitInstance.api.getCharacters().enqueue(object : Callback<AllCharactersResponse>{
             override fun onResponse(
                 call: Call<AllCharactersResponse>,
                 response: Response<AllCharactersResponse>
             ) {
                 if(response.isSuccessful && response.body() != null){
-                    characterList = toCharacter(response.body()!!.results)
-                    addToDatabase(characterList)
-                    setupRecycler()
+                    CoroutineScope(Dispatchers.IO).launch {
+                        database.characterDao().deleteAll()
+                    }
+                    CoroutineScope(Dispatchers.Main).launch{
+                        characterList.clear()
+                        characterList = toCharacter(response.body()!!.results)
+                        addToDatabase(characterList)
+                        setupRecycler()
+                    }
                 }
             }
 
