@@ -38,26 +38,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun listenToNavGraphChanges() {
-        navController.addOnDestinationChangedListener(NavController.OnDestinationChangedListener{controller, destination, arguments ->
-            when (destination.id){
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
                 R.id.loginFragment -> {
                     toolBar.visibility = View.GONE
                 }
-                R.id.characterDetailFragment -> {
-                    toolBar.menu.getItem(R.id.menu_item_logOut).isVisible = false
-                    toolBar.menu.getItem(R.id.menu_item_sortZA).isVisible = false
-                    toolBar.menu.getItem(R.id.menu_item_sortAZ).isVisible = false
+                R.id.charactersFragment -> {
                     toolBar.visibility = View.VISIBLE
+                    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                    supportActionBar?.setDisplayShowHomeEnabled(true)
+                    //toolbar.navigationIcon = null
+                    toolBar.title = "Characters"
+                    toolBar.menu.findItem(R.id.menu_item_sortAZ).isVisible = true
+                    toolBar.menu.findItem(R.id.menu_item_sortZA).isVisible = true
+                    toolBar.menu.findItem(R.id.menu_item_logOut).isVisible = true
+                    toolBar.menu.findItem(R.id.menu_item_update).isVisible = true
+                    toolBar.menu.findItem(R.id.menu_item_delete).isVisible = false
                 }
-                else ->{
-                    toolBar.menu.getItem(R.id.menu_item_delete).isVisible = false
-                    toolBar.menu.getItem(R.id.menu_item_logOut).isVisible = true
-                    toolBar.menu.getItem(R.id.menu_item_sortZA).isVisible = true
-                    toolBar.menu.getItem(R.id.menu_item_sortAZ).isVisible = true
+
+                R.id.characterDetailFragment -> {
                     toolBar.visibility = View.VISIBLE
+                    toolBar.title = "Character Detail"
+                    toolBar.menu.findItem(R.id.menu_item_sortAZ).isVisible = false
+                    toolBar.menu.findItem(R.id.menu_item_sortZA).isVisible = false
+                    toolBar.menu.findItem(R.id.menu_item_logOut).isVisible = false
+                    toolBar.menu.findItem(R.id.menu_item_update).isVisible = true
+                    toolBar.menu.findItem(R.id.menu_item_delete).isVisible = true
                 }
             }
-        })
+        }
     }
 
     public fun getToolBar(): MaterialToolbar{

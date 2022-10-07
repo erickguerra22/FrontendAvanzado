@@ -139,11 +139,13 @@
             android:layout_height="match_parent"
             android:hint="@string/appearances_subtitle"
             tools:text="@string/test_appearances_info"
+            android:inputType="number"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/btn_characterDetailFragment_guardar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"

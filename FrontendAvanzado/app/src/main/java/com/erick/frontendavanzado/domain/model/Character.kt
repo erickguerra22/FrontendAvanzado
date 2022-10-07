@@ -10,7 +10,6 @@ data class Character (
     val episodes: Int,
     val gender: String,
     val image: String,
-    val location: String,
     val name: String,
     val origin: String,
     val species: String,

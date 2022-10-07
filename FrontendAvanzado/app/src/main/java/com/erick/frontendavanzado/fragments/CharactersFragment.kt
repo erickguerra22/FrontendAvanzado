@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.erick.frontendavanzado.R
 import com.erick.frontendavanzado.activities.MainActivity
 import com.erick.frontendavanzado.adapters.CharacterAdapter
@@ -37,8 +38,13 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
         toolBar = (activity as MainActivity).getToolBar()
         recyclerView = view.findViewById(R.id.recyclerView_charactersFragment)
         loginFragment = LoginFragment()
+        database = Room.databaseBuilder(
+            requireContext(),
+            Database::class.java,
+            "dbCharacters"
+        ).build()
 
-        if(localData() > 0)
+        if(getCharacters() > 0)
             setupRecycler()
         else{
             RetrofitInstance.api.getCharacters().enqueue(object : Callback<AllCharactersResponse>{
@@ -48,6 +54,7 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
                 ) {
                     if(response.isSuccessful && response.body() != null){
                         characterList = toCharacter(response.body()!!.results)
+                        saveCharacters(characterList)
                         setupRecycler()
                     }
                 }
@@ -61,7 +68,20 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
         setListeners()
     }
 
-    private fun localData(): Int {
+    private fun saveCharacters(characterList: MutableList<Character>) {
+        characterList.forEach{
+            CoroutineScope(Dispatchers.IO).launch {
+                database.characterDao().insert(it)
+            }
+        }
+    }
+
+    private fun getCharacters(): Int {
+        CoroutineScope(Dispatchers.IO).launch {
+            val characters = database.characterDao().getAllCharacters()
+            characterList.clear()
+            characterList.addAll(characters)
+        }
         return characterList.size
     }
 
@@ -73,7 +93,6 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
                 it.episode.size,
                 it.gender,
                 it.image,
-                it.location.name,
                 it.name,
                 it.origin.name,
                 it.species,
@@ -100,12 +119,49 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharacterAdap
                 }
                 R.id.menu_item_logOut ->{
                     CoroutineScope(Dispatchers.IO).launch {
+                        database.characterDao().deleteAll()
                         loginFragment.deleteMail(requireContext())
                     }
                     requireView().findNavController().navigate(R.id.action_charactersFragment_to_loginFragment)
                     true
                 }
+                R.id.menu_item_update->{
+                    syncData()
+                    true
+                }
                 else -> true
+            }
+        }
+    }
+
+    private fun syncData() {
+        characterList.clear()
+        CoroutineScope(Dispatchers.IO).launch {
+            database.characterDao().deleteAll()
+        }
+        RetrofitInstance.api.getCharacters().enqueue(object : Callback<AllCharactersResponse>{
+            override fun onResponse(
+                call: Call<AllCharactersResponse>,
+                response: Response<AllCharactersResponse>
+            ) {
+                if(response.isSuccessful && response.body() != null){
+                    characterList = toCharacter(response.body()!!.results)
+                    addToDatabase(characterList)
+                    setupRecycler()
+                }
+            }
+
+            override fun onFailure(call: Call<AllCharactersResponse>, t: Throwable) {
+                println("Error")
+            }
+
+        })
+    }
+
+    private fun addToDatabase(characterList: MutableList<Character>) {
+        characterList.forEach{
+            CoroutineScope(Dispatchers.IO).launch {
+                database.characterDao().insert(it)
             }
         }
     }
