@@ -44,12 +44,16 @@ class MainActivity : AppCompatActivity() {
                     toolBar.visibility = View.GONE
                 }
                 R.id.characterDetailFragment -> {
-                    toolBar.menu.clear()
+                    toolBar.menu.getItem(R.id.menu_item_logOut).isVisible = false
+                    toolBar.menu.getItem(R.id.menu_item_sortZA).isVisible = false
+                    toolBar.menu.getItem(R.id.menu_item_sortAZ).isVisible = false
                     toolBar.visibility = View.VISIBLE
                 }
                 else ->{
-                    toolBar.menu.clear()
-                    toolBar.inflateMenu(R.menu.tool_bar_menu)
+                    toolBar.menu.getItem(R.id.menu_item_delete).isVisible = false
+                    toolBar.menu.getItem(R.id.menu_item_logOut).isVisible = true
+                    toolBar.menu.getItem(R.id.menu_item_sortZA).isVisible = true
+                    toolBar.menu.getItem(R.id.menu_item_sortAZ).isVisible = true
                     toolBar.visibility = View.VISIBLE
                 }
             }

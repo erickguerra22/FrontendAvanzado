@@ -1,10 +1,10 @@
-package com.erick.frontendavanzado.datasource.api
+package com.erick.frontendavanzado.data.api_source.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.erick.frontendavanzado.datasource.util.Constants.Companion.RYM_BASE_URL
+import com.erick.frontendavanzado.data.api_source.util.Constants.Companion.RYM_BASE_URL
 
 class RetrofitInstance {
 

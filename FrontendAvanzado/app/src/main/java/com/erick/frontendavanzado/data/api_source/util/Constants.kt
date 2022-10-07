@@ -1,4 +1,4 @@
-package com.erick.frontendavanzado.datasource.util
+package com.erick.frontendavanzado.data.api_source.util
 
 class Constants {
     companion object{

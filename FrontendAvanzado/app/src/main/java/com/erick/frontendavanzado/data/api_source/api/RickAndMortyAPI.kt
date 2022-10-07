@@ -1,7 +1,7 @@
-package com.erick.frontendavanzado.datasource.api
+package com.erick.frontendavanzado.data.api_source.api
 
-import com.erick.frontendavanzado.datasource.model.AllCharactersResponse
-import com.erick.frontendavanzado.datasource.model.CharacterDto
+import com.erick.frontendavanzado.data.api_source.model.AllCharactersResponse
+import com.erick.frontendavanzado.data.api_source.model.CharacterDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

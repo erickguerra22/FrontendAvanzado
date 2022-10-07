@@ -11,13 +11,11 @@ import coil.load
 import coil.request.CachePolicy
 import coil.transform.CircleCropTransformation
 import com.erick.frontendavanzado.R
-import com.erick.frontendavanzado.datasource.model.CharacterDto
-import com.erick.frontendavanzado.entities.Character
-import com.erick.frontendavanzado.fragments.CharacterDetailFragment
-import com.erick.frontendavanzado.fragments.CharactersFragmentDirections
+import com.erick.frontendavanzado.data.api_source.model.CharacterDto
+import com.erick.frontendavanzado.domain.model.Character
 
 class CharacterAdapter(
-    private val dataSet: MutableList<CharacterDto>,
+    private val dataSet: MutableList<Character>,
     private val listener: RecyclerCharacterClickHandler
     ) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
@@ -30,7 +28,7 @@ class CharacterAdapter(
         private val infoCharacter: TextView = view.findViewById(R.id.txt_characterItemInfo)
         private val layoutCharacter: ConstraintLayout = view.findViewById(R.id.layout_itemCharacter)
 
-        fun setData(character: CharacterDto){
+        fun setData(character: Character){
             imgCharacter.load(character.image){
                 crossfade(true)
                 crossfade(500)
@@ -49,7 +47,7 @@ class CharacterAdapter(
     }
 
     interface RecyclerCharacterClickHandler {
-        fun onCharacterClicked(character: CharacterDto)
+        fun onCharacterClicked(character: Character)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {

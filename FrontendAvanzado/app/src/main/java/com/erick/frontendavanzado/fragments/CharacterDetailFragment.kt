@@ -10,8 +10,8 @@ import coil.load
 import coil.request.CachePolicy
 import coil.transform.CircleCropTransformation
 import com.erick.frontendavanzado.R
-import com.erick.frontendavanzado.datasource.api.RetrofitInstance
-import com.erick.frontendavanzado.datasource.model.CharacterDto
+import com.erick.frontendavanzado.data.api_source.api.RetrofitInstance
+import com.erick.frontendavanzado.data.api_source.model.CharacterDto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

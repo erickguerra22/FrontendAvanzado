@@ -19,4 +19,6 @@
     <string name="valid_mail">gue21781@uvg.edu.gt</string>
     <string name="login_btn">Iniciar Sesión</string>
     <string name="inputLayout_password_hint">Contraseña</string>
+    <string name="name_subtitle">Name</string>
+    <string name="btn_guardar_text">Guardar</string>
 </resources>

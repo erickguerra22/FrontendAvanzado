@@ -14,143 +14,145 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/min_margin"
+        android:layout_marginTop="@dimen/extra_large_margin"
         />
-    <TextView
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/txt_characterName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginHorizontal="@dimen/default_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_profilePicture_characterDetailFragment"
-        tools:text="@string/test_name"
-        android:textStyle="bold"
-        android:textSize="@dimen/title_size"
-        android:textAlignment="center"
-        android:layout_marginTop="@dimen/medium_margin"
-        />
-    <TextView
-        android:id="@+id/txt_species"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/horizontal_margin_details"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txt_speciesInfo"
-        app:layout_constraintBottom_toBottomOf="@id/txt_speciesInfo"
-        app:layout_constraintEnd_toStartOf="@id/txt_speciesInfo"
-        android:text="@string/species_subtitle"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        />
+        >
 
-    <TextView
-        android:id="@+id/txt_status"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/horizontal_margin_details"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txt_statusInfo"
-        app:layout_constraintBottom_toBottomOf="@id/txt_statusInfo"
-        app:layout_constraintEnd_toStartOf="@id/txt_statusInfo"
-        android:text="@string/status_subtitle"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        />
-    <TextView
-        android:id="@+id/txt_gender"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/horizontal_margin_details"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txt_genderInfo"
-        app:layout_constraintBottom_toBottomOf="@id/txt_genderInfo"
-        app:layout_constraintEnd_toStartOf="@id/txt_genderInfo"
-        android:text="@string/gender_subtitle"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        />
-    <TextView
-        android:id="@+id/txt_origin"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/horizontal_margin_details"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txt_originInfo"
-        app:layout_constraintEnd_toStartOf="@id/txt_originInfo"
-        android:text="@string/origin_subtitle"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintBottom_toBottomOf="@id/txt_originInfo"
-        />
-    <TextView
-        android:id="@+id/txt_appearances"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/horizontal_margin_details"
-        android:layout_marginTop="@dimen/medium_margin"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_originInfo"
-        app:layout_constraintEnd_toStartOf="@id/txt_appearancesInfo"
-        android:text="@string/appearances_subtitle"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        />
-    <TextView
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/name_subtitle"
+            tools:text="@string/test_name"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/txt_speciesInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAlignment="textEnd"
-        android:layout_marginTop="@dimen/large_margin"
-        android:layout_marginEnd="@dimen/horizontal_margin_details"
-        tools:text="@string/test_species_info"
-        app:layout_constraintStart_toEndOf="@id/txt_species"
+        android:layout_marginTop="@dimen/min_margin"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_characterName"
-        />
+        >
 
-    <TextView
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/species_subtitle"
+            tools:text="@string/test_species_info"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/txt_statusInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAlignment="textEnd"
-        android:layout_marginTop="@dimen/medium_margin"
-        android:layout_marginEnd="@dimen/horizontal_margin_details"
-        tools:text="@string/test_status_info"
-        app:layout_constraintStart_toEndOf="@id/txt_status"
+        android:layout_marginTop="@dimen/min_margin"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_speciesInfo"
-        />
+        >
 
-    <TextView
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/status_subtitle"
+            tools:text="@string/test_status_info"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/txt_genderInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAlignment="textEnd"
-        android:layout_marginTop="@dimen/medium_margin"
-        android:layout_marginEnd="@dimen/horizontal_margin_details"
-        tools:text="@string/test_gender_info"
-        app:layout_constraintStart_toEndOf="@id/txt_gender"
+        android:layout_marginTop="@dimen/min_margin"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_statusInfo"
-        />
-    <TextView
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/gender_subtitle"
+            tools:text="@string/test_gender_info"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/txt_originInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAlignment="textEnd"
-        android:layout_marginTop="@dimen/medium_margin"
-        android:layout_marginEnd="@dimen/horizontal_margin_details"
-        tools:text="@string/test_origin_info"
-        app:layout_constraintStart_toEndOf="@id/txt_origin"
+        android:layout_marginTop="@dimen/min_margin"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_genderInfo"
-        />
-    <TextView
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/origin_subtitle"
+            tools:text="@string/test_origin_info"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/txt_appearancesInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAlignment="textEnd"
-        android:layout_marginEnd="@dimen/horizontal_margin_details"
-        tools:text="@string/test_appearances_info"
-        app:layout_constraintStart_toEndOf="@id/txt_appearances"
+        android:layout_marginTop="@dimen/min_margin"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txt_appearances"
-        app:layout_constraintBottom_toBottomOf="@id/txt_appearances"
+        app:layout_constraintTop_toBottomOf="@id/txt_originInfo"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/appearances_subtitle"
+            tools:text="@string/test_appearances_info"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_appearancesInfo"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        android:layout_marginTop="@dimen/large_margin"
+        android:text="@string/btn_guardar_text"
+        android:backgroundTint="@color/blue"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

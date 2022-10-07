@@ -1,4 +1,4 @@
-package com.erick.frontendavanzado.datasource.model
+package com.erick.frontendavanzado.data.api_source.model
 
 data class CharacterDto(
     val created: String,
