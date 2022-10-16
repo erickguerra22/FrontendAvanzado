@@ -1,7 +1,7 @@
-package com.erick.frontendavanzado.data.local_source
+package com.erick.frontendavanzado.data.local.dao
 
 import androidx.room.*
-import com.erick.frontendavanzado.domain.model.Character
+import com.erick.frontendavanzado.data.local.model.Character
 
 @Dao
 interface CharacterDao {
@@ -13,6 +13,9 @@ interface CharacterDao {
 
     @Insert
     suspend fun insert(character: Character)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(characters: List<Character>)
 
     @Update
     suspend fun update(character: Character)

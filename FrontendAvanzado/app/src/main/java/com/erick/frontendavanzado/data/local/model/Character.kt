@@ -1,4 +1,4 @@
-package com.erick.frontendavanzado.domain.model
+package com.erick.frontendavanzado.data.local.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

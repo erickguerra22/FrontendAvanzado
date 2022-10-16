@@ -1,4 +1,4 @@
-package com.erick.frontendavanzado.adapters
+package com.erick.frontendavanzado.ui.character_list
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +11,7 @@ import coil.load
 import coil.request.CachePolicy
 import coil.transform.CircleCropTransformation
 import com.erick.frontendavanzado.R
-import com.erick.frontendavanzado.data.api_source.model.CharacterDto
-import com.erick.frontendavanzado.domain.model.Character
+import com.erick.frontendavanzado.data.local.model.Character
 
 class CharacterAdapter(
     private val dataSet: MutableList<Character>,

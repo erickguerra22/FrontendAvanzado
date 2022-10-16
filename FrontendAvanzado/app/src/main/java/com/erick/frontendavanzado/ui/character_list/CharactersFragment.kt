@@ -1,4 +1,4 @@
-package com.erick.frontendavanzado.fragments
+package com.erick.frontendavanzado.ui.character_list
 
 import android.os.Bundle
 import android.view.View
@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.erick.frontendavanzado.R
-import com.erick.frontendavanzado.activities.MainActivity
-import com.erick.frontendavanzado.adapters.CharacterAdapter
-import com.erick.frontendavanzado.data.api_source.api.RetrofitInstance
-import com.erick.frontendavanzado.data.api_source.model.AllCharactersResponse
-import com.erick.frontendavanzado.data.api_source.model.CharacterDto
-import com.erick.frontendavanzado.data.local_source.Database
-import com.erick.frontendavanzado.domain.model.Character
+import com.erick.frontendavanzado.ui.MainActivity
+import com.erick.frontendavanzado.data.remote.api.RetrofitInstance
+import com.erick.frontendavanzado.data.remote.dto.AllCharactersResponse
+import com.erick.frontendavanzado.data.remote.dto.CharacterDto
+import com.erick.frontendavanzado.data.local.Database
+import com.erick.frontendavanzado.data.local.model.Character
+import com.erick.frontendavanzado.ui.login.LoginFragment
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

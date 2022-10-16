@@ -1,4 +1,4 @@
-package com.erick.frontendavanzado.data.api_source.model
+package com.erick.frontendavanzado.data.remote.dto
 
 data class Origin(
     val name: String,

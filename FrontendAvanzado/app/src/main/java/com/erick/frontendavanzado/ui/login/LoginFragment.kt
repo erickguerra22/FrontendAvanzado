@@ -1,4 +1,4 @@
-package com.erick.frontendavanzado.fragments
+package com.erick.frontendavanzado.ui.login
 
 import android.content.Context
 import android.os.Bundle

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/charactersFragment"
-        android:name="com.erick.frontendavanzado.fragments.CharactersFragment"
+        android:name="com.erick.frontendavanzado.ui.character_list.CharactersFragment"
         android:label="Characters"
         tools:layout="@layout/fragment_characters" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
-        android:name="com.erick.frontendavanzado.fragments.CharacterDetailFragment"
+        android:name="com.erick.frontendavanzado.ui.character_details.CharacterDetailFragment"
         android:label="Character Details"
         tools:layout="@layout/fragment_character_detail" >
         <argument
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.erick.frontendavanzado.fragments.LoginFragment"
+        android:name="com.erick.frontendavanzado.ui.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
